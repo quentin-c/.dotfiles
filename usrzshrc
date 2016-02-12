@@ -86,4 +86,5 @@ alias upgrade='sudo apt-get update && sudo apt-get upgrade && sudo apt-get clean
 alias wifi='wicd-client -n'
 alias tb='/home/pti/Bin/tor-browser_fr/Browser/start-tor-browser --detach www.openmailbox.org/webmail/'
 alias feh='feh -.'
+alias vim='vim --servername VIM'
 
