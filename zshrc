@@ -1,255 +1,83 @@
-# /etc/zsh/zshrc ou ~/.zshrc
-# Fichier de configuration principal de zsh, lu au lancement des shells interactifs
-# (et non des shells d'interprétation de fichier)
-# Formation Debian GNU/Linux par Alexis de Lattre
-# http://formation-debian.via.ecp.fr/
+# Path to your oh-my-zsh installation.
+  export ZSH=/home/pti/.oh-my-zsh
 
-################
-# 1. Les alias #
-################
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="bira"
 
-# Gestion du 'ls' : couleur & ne touche pas aux accents
-alias ls='ls --classify --tabsize=0 --literal --color=auto --show-control-chars --human-readable'
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
 
-# Demande confirmation avant d'écraser un fichier
-alias cp='cp --interactive'
-alias mv='mv --interactive'
-alias rm='rm --interactive'
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
-# Raccourcis pour 'ls'
-alias ll='ls -l'
-alias la='ls -a'
-alias lla='ls -la'
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
 
-# Quelques alias pratiques
-alias c='clear'
-alias less='less --quiet'
-alias s='cd ..'
-alias df='df --human-readable'
-alias du='du --human-readable'
-alias m='mutt -y'
-alias md='mkdir'
-alias rd='rmdir'
+# Uncomment the following line to change how often to auto-update (in days).
+export UPDATE_ZSH_DAYS=13
 
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
 
-#######################################
-# 2. Prompt et définition des touches #
-#######################################
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
 
-# Exemple : ma touche HOME, cf  man termcap, est codifiee K1 (upper left
-# key  on keyboard)  dans le  /etc/termcap.  En me  referant a  l'entree
-# correspondant a mon terminal (par exemple 'linux') dans ce fichier, je
-# lis :  K1=\E[1~, c'est la sequence  de caracteres qui sera  envoyee au
-# shell. La commande bindkey dit simplement au shell : a chaque fois que
-# tu rencontres telle sequence de caractere, tu dois faire telle action.
-# La liste des actions est disponible dans "man zshzle".
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
 
-# Correspondance touches-fonction
-bindkey ''    beginning-of-line       # Home
-bindkey "\e[1~" beginning-of-line
-bindkey "\e[H"  beginning-of-line
-bindkey ''    end-of-line             # End
-bindkey "\e[4~" end-of-line
-bindkey "\e[F"  end-of-line
-bindkey ''    delete-char             # Del
-bindkey '[3~' delete-char
-bindkey '[2~' overwrite-mode          # Insert
-bindkey '[5~' history-search-backward # PgUp
-bindkey '[6~' history-search-forward  # PgDn
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
 
-# Prompt couleur (la couleur n'est pas la même pour le root et
-# pour les simples utilisateurs)
-if [ "`id -u`" -eq 0 ]; then
-  export PS1="%{[36;1m%}%T %{[34m%}%n%{[33m%}@%{[37m%}%m %{[32m%}%~ %{[33m%}%#%{[0m%} "
-else
-  export PS1="%{[36;1m%}%T %{[31m%}%n%{[33m%}@%{[37m%}%m %{[32m%}%~ %{[33m%}%#%{[0m%} "
-fi
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Prise en charge des touches [début], [fin] et autres
-typeset -A key
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+HIST_STAMPS="dd.mm.yyyy"
 
-key[Home]=${terminfo[khome]}
-key[End]=${terminfo[kend]}
-key[Insert]=${terminfo[kich1]}
-key[Delete]=${terminfo[kdch1]}
-key[Up]=${terminfo[kcuu1]}
-key[Down]=${terminfo[kcud1]}
-key[Left]=${terminfo[kcub1]}
-key[Right]=${terminfo[kcuf1]}
-key[PageUp]=${terminfo[kpp]}
-key[PageDown]=${terminfo[knp]}
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
 
-[[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
-[[ -n "${key[End]}"     ]]  && bindkey  "${key[End]}"     end-of-line
-[[ -n "${key[Insert]}"  ]]  && bindkey  "${key[Insert]}"  overwrite-mode
-[[ -n "${key[Delete]}"  ]]  && bindkey  "${key[Delete]}"  delete-char
-[[ -n "${key[Up]}"      ]]  && bindkey  "${key[Up]}"      up-line-or-history
-[[ -n "${key[Down]}"    ]]  && bindkey  "${key[Down]}"    down-line-or-history
-[[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
-[[ -n "${key[Right]}"   ]]  && bindkey  "${key[Right]}"   forward-char
+# Which plugins would you like to load? (plugins can be found in
+# ~/.oh-my-zsh/plugins/*) Custom plugins may be added to
+# ~/.oh-my-zsh/custom/plugins/ Example format: plugins=(rails git textmate ruby
+# lighthouse) Add wisely, as too many plugins slow down shell startup.
+#plugins=(git)
 
+# User configuration
 
-# Titre de la fenêtre d'un xterm
-case $TERM in
-   xterm*)
-       precmd () {print -Pn "\e]0;%n@%m: %~\a"}
-       ;;
-esac
+  export PATH="/usr/local/bin:/usr/local/sbin:/bin:/usr/bin:/usr/sbin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/sbin:/root/bin"
+# export MANPATH="/usr/local/man:$MANPATH"
 
-# Gestion de la couleur pour 'ls' (exportation de LS_COLORS)
-if [ -x /usr/bin/dircolors ]
-then
-  if [ -r ~/.dir_colors ]
-  then
-    eval "`dircolors ~/.dir_colors`"
-  elif [ -r /etc/dir_colors ]
-  then
-    eval "`dircolors /etc/dir_colors`"
-  else
-    eval "`dircolors`"
-  fi
-fi
+source $ZSH/oh-my-zsh.sh
 
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
 
-###########################################
-# 3. Options de zsh (cf 'man zshoptions') #
-###########################################
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
 
-# Je ne veux JAMAIS de beeps
-unsetopt beep
-unsetopt hist_beep
-unsetopt list_beep
-# >| doit être utilisés pour pouvoir écraser un fichier déjà existant ;
-# le fichier ne sera pas écrasé avec '>'
-unsetopt clobber
-# Ctrl+D est équivalent à 'logout'
-unsetopt ignore_eof
-# Affiche le code de sortie si différent de '0'
-setopt print_exit_value
-# Demande confirmation pour 'rm *'
-unsetopt rm_star_silent
-# Correction orthographique des commandes
-# Désactivé car, contrairement à ce que dit le "man", il essaye de
-# corriger les commandes avant de les hasher
-#setopt correct
-# Si on utilise des jokers dans une liste d'arguments, retire les jokers
-# qui ne correspondent à rien au lieu de donner une erreur
-setopt nullglob
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
 
-# Schémas de complétion
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-# - Schéma A :
-# 1ère tabulation : complète jusqu'au bout de la partie commune
-# 2ème tabulation : propose une liste de choix
-# 3ème tabulation : complète avec le 1er item de la liste
-# 4ème tabulation : complète avec le 2ème item de la liste, etc...
-# -> c'est le schéma de complétion par défaut de zsh.
-
-# Schéma B :
-# 1ère tabulation : propose une liste de choix et complète avec le 1er item
-#                   de la liste
-# 2ème tabulation : complète avec le 2ème item de la liste, etc...
-# Si vous voulez ce schéma, décommentez la ligne suivante :
-#setopt menu_complete
-
-# Schéma C :
-# 1ère tabulation : complète jusqu'au bout de la partie commune et
-#                   propose une liste de choix
-# 2ème tabulation : complète avec le 1er item de la liste
-# 3ème tabulation : complète avec le 2ème item de la liste, etc...
-# Ce schéma est le meilleur à mon goût !
-# Si vous voulez ce schéma, décommentez la ligne suivante :
-unsetopt list_ambiguous
-# (Merci à Youri van Rietschoten de m'avoir donné l'info !)
-
-# Options de complétion
-# Quand le dernier caractère d'une complétion est '/' et que l'on
-# tape 'espace' après, le '/' est effacé
-setopt auto_remove_slash
-# Ne fait pas de complétion sur les fichiers et répertoires cachés
-unsetopt glob_dots
-
-# Traite les liens symboliques comme il faut
-setopt chase_links
-
-# Quand l'utilisateur commence sa commande par '!' pour faire de la
-# complétion historique, il n'exécute pas la commande immédiatement
-# mais il écrit la commande dans le prompt
-setopt hist_verify
-# Si la commande est invalide mais correspond au nom d'un sous-répertoire
-# exécuter 'cd sous-répertoire'
-setopt auto_cd
-# L'exécution de "cd" met le répertoire d'où l'on vient sur la pile
-setopt auto_pushd
-# Ignore les doublons dans la pile
-setopt pushd_ignore_dups
-# N'affiche pas la pile après un "pushd" ou "popd"
-setopt pushd_silent
-# "pushd" sans argument = "pushd $HOME"
-setopt pushd_to_home
-
-# Les jobs qui tournent en tâche de fond sont nicé à '0'
-unsetopt bg_nice
-# N'envoie pas de "HUP" aux jobs qui tourent quand le shell se ferme
-unsetopt hup
-
-
-###############################################
-# 4. Paramètres de l'historique des commandes #
-###############################################
-
-# Nombre d'entrées dans l'historique
-export HISTORY=1000
-export SAVEHIST=1000
-
-# Fichier où est stocké l'historique
-export HISTFILE=$HOME/.history
-
-# Ajoute l'historique à la fin de l'ancien fichier
-#setopt append_history
-
-# Chaque ligne est ajoutée dans l'historique à mesure qu'elle est tapée
-setopt inc_append_history
-
-# Ne stocke pas  une ligne dans l'historique si elle  est identique à la
-# précédente
-setopt hist_ignore_dups
-
-# Supprime les  répétitions dans le fichier  d'historique, ne conservant
-# que la dernière occurrence ajoutée
-#setopt hist_ignore_all_dups
-
-# Supprime les  répétitions dans l'historique lorsqu'il  est plein, mais
-# pas avant
-setopt hist_expire_dups_first
-
-# N'enregistre  pas plus d'une fois  une même ligne, quelles  que soient
-# les options fixées pour la session courante
-#setopt hist_save_no_dups
-
-# La recherche dans  l'historique avec l'éditeur de commandes  de zsh ne
-# montre  pas  une même  ligne  plus  d'une fois,  même  si  elle a  été
-# enregistrée
-setopt hist_find_no_dups
-
-
-###########################################
-# 5. Complétion des options des commandes #
-###########################################
-
-zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}'
-zstyle ':completion:*' max-errors 3 numeric
-zstyle ':completion:*' use-compctl false
-
-autoload -U compinit
-compinit
-
-# Le logiciel autojump <https://github.com/joelthelion/autojump> fournit un
-# moyen d'accéder rapidement aux répertoires fréquemment visités, en tapant
-# simplement « j un_bout_du_nom_du_répertoire ». Si vous souhaitez l'utiliser,
-# installez le paquet autojump et décommentez la ligne suivante :
-#. /usr/share/autojump/autojump.sh
-
-# prevents from overwriting file
-set -o noclobber
-
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+source .aliases
+source .localaliases

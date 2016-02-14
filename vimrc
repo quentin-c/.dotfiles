@@ -188,10 +188,6 @@ nnoremap <leader>W :%s/\//<cr>:let @/=''<CR>
 " Reselectionne le texte venant d'etre coller
 "nnormap <leader>v V`]
 
-" Ouvre ~/.vimrc dans une fenêtre voisine pour l'éditer facilement
-" de travail
-nnoremap <leader>ev <C-w><C-v><C-l>:e MYVIMRC
-
 " Modifie la touche pour sortir du mode INSERTION
 inoremap jj <ESC>
 
@@ -204,3 +200,7 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" Gestion des copier-coller depuis clipboard
+vnoremap  <leader>y "+y
+vnoremap  <leader>p <Esc>:set paste<CR>gv"+p:set nopaste<CR>
+nnoremap <leader>p :set paste<CR>"+p:set nopaste<CR>
