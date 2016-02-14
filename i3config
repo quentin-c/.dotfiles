@@ -91,6 +91,8 @@ bindsym $mod+q focus parent
 
 set $workspace1 "1: Terminals"
 set $workspace2 "2: Tor Browser"
+set $workspace10 "10: SSH"
+
 # switch to workspace
 bindsym $mod+ampersand workspace $workspace1
 bindsym $mod+eacute workspace $workspace2
@@ -101,7 +103,7 @@ bindsym $mod+minus workspace 6
 bindsym $mod+egrave workspace 7
 bindsym $mod+underscore workspace 8
 bindsym $mod+ccedilla workspace 9
-bindsym $mod+agrave workspace 10
+bindsym $mod+agrave workspace $workspace10
 
 # move focused container to workspace
 bindsym $mod+Shift+ampersand move container to workspace $workspace1
@@ -113,7 +115,7 @@ bindsym $mod+Shift+minus move container to workspace 6
 bindsym $mod+Shift+egrave move container to workspace 7
 bindsym $mod+Shift+underscore move container to workspace 8
 bindsym $mod+Shift+ccedilla move container to workspace 9
-bindsym $mod+Shift+agrave move container to workspace 10
+bindsym $mod+Shift+agrave move container to workspace $workspace10
 
 assign [class="Tor Browser"] $workspace2
 
