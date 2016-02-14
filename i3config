@@ -91,30 +91,36 @@ bindsym $mod+q focus parent
 
 set $workspace1 "1: Terminals"
 set $workspace2 "2: Tor Browser"
+set $workspace4 "4: "
+set $workspace5 "5: "
+set $workspace6 "6: "
+set $workspace7 "7: "
+set $workspace8 "8: "
+set $workspace9 "9: "
 set $workspace10 "10: SSH"
 
 # switch to workspace
 bindsym $mod+ampersand workspace $workspace1
 bindsym $mod+eacute workspace $workspace2
-bindsym $mod+quotedbl workspace 3
-bindsym $mod+apostrophe workspace 4
-bindsym $mod+parenleft workspace 5
-bindsym $mod+minus workspace 6
-bindsym $mod+egrave workspace 7
-bindsym $mod+underscore workspace 8
-bindsym $mod+ccedilla workspace 9
+bindsym $mod+quotedbl workspace $workspace3
+bindsym $mod+apostrophe workspace $workspace4
+bindsym $mod+parenleft workspace $workspace5
+bindsym $mod+minus workspace $workspace6
+bindsym $mod+egrave workspace $workspace7
+bindsym $mod+underscore workspace $workspace8
+bindsym $mod+ccedilla workspace $workspace9
 bindsym $mod+agrave workspace $workspace10
 
 # move focused container to workspace
 bindsym $mod+Shift+ampersand move container to workspace $workspace1
 bindsym $mod+Shift+eacute move container to workspace $workspace2
-bindsym $mod+Shift+quotedbl move container to workspace 3
-bindsym $mod+Shift+apostrophe move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+minus move container to workspace 6
-bindsym $mod+Shift+egrave move container to workspace 7
-bindsym $mod+Shift+underscore move container to workspace 8
-bindsym $mod+Shift+ccedilla move container to workspace 9
+bindsym $mod+Shift+quotedbl move container to workspace $workspace3
+bindsym $mod+Shift+apostrophe move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+minus move container to workspace $workspace6
+bindsym $mod+Shift+egrave move container to workspace $workspace7
+bindsym $mod+Shift+underscore move container to workspace $workspace8
+bindsym $mod+Shift+ccedilla move container to workspace $workspace9
 bindsym $mod+Shift+agrave move container to workspace $workspace10
 
 assign [class="Tor Browser"] $workspace2
