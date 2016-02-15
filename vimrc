@@ -204,3 +204,10 @@ nnoremap <C-l> <C-w>l
 vnoremap  <leader>y "+y
 vnoremap  <leader>p <Esc>:set paste<CR>gv"+p:set nopaste<CR>
 nnoremap <leader>p :set paste<CR>"+p:set nopaste<CR>
+
+" Vimtex config
+let maplocalleader = ";"
+let g:tex_flavor = 'latex'
+let g:vimtex_quickfix_mode = 1
+let g:vimtex_quickfix_open_on_warning = 0
+let g:vimtex_view_method = 'mupdf'
