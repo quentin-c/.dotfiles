@@ -91,9 +91,10 @@ bindsym $mod+q focus parent
 
 set $workspace1 "1: Terminals"
 set $workspace2 "2: Tor Browser"
-set $workspace4 "4: "
-set $workspace5 "5: "
-set $workspace6 "6: "
+set $workspace3 "3: Latex "
+set $workspace4 "4: Publi"
+set $workspace5 "5: Gimp"
+set $workspace6 "6: Iceweasel"
 set $workspace7 "7: "
 set $workspace8 "8: "
 set $workspace9 "9: "
@@ -123,7 +124,10 @@ bindsym $mod+Shift+underscore move container to workspace $workspace8
 bindsym $mod+Shift+ccedilla move container to workspace $workspace9
 bindsym $mod+Shift+agrave move container to workspace $workspace10
 
+# Assign package to workspace. Get the class with xprop
 assign [class="Tor Browser"] $workspace2
+assign [class="Gimp"] $workspace5
+assign [class="Iceweasel"] $workspace6
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -169,8 +173,19 @@ bindsym $mod+F2 exec i3lock & xset dpms force off
 bindsym $mod+F10 exec mount /media/clef0
 bindsym $mod+F11 exec umount /media/clef0
 bindsym $mod+F1 exec xset dpms force off
+bindsym $mod+F7 exec /home/pti/Bin/startxrandr
 bindsym XF86AudioRaiseVolume exec amixer -q set Master playback 5%+
 bindsym XF86AudioLowerVolume exec amixer -q set Master playback 5%-
+#bindsym $mod+Shift+ampersand move container to workspace $workspace1
+#bindsym $mod+Shift+eacute move container to workspace $workspace2
+#bindsym $mod+Shift+quotedbl move container to workspace $workspace3
+#bindsym $mod+Shift+apostrophe move container to workspace $workspace4
+#bindsym $mod+Shift+5 move container to workspace $workspace5
+#bindsym $mod+Shift+minus move container to workspace $workspace6
+#bindsym $mod+Shift+egrave move container to workspace $workspace7
+#bindsym $mod+Shift+underscore move container to workspace $workspace8
+#bindsym $mod+Shift+ccedilla move container to workspace $workspace9
+#bindsym $mod+Shift+agrave move container to workspace $workspace10
 
 #exec /home/pti/Bin/tor-browser_fr/Browser/start-tor-browser --detach
 #www.openmailbox.org/webmail/ 
