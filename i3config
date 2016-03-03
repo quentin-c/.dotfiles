@@ -97,7 +97,7 @@ set $workspace5 "5: Gimp"
 set $workspace6 "6: Iceweasel"
 set $workspace7 "7: "
 set $workspace8 "8: "
-set $workspace9 "9: "
+set $workspace9 "9: Deluge"
 set $workspace10 "10: SSH"
 
 # switch to workspace
@@ -128,6 +128,7 @@ bindsym $mod+Shift+agrave move container to workspace $workspace10
 assign [class="Tor Browser"] $workspace2
 assign [class="Gimp"] $workspace5
 assign [class="Iceweasel"] $workspace6
+assign [class="Deluge"] $workspace9
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
