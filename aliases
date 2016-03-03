@@ -3,8 +3,8 @@ alias ls='ls --classify --tabsize=0 --literal --color=auto --show-control-chars 
 
 # Demande confirmation avant d'écraser un fichier
 alias cp='cp -v --interactive'
-alias mv='mv --interactive'
-alias rm='rm --interactive'
+alias mv='mv -v --interactive'
+alias rm='rm -v --interactive'
 
 # Raccourcis pour 'ls'
 alias ll='ls -l'
@@ -16,7 +16,8 @@ alias c='clear'
 alias less='less --quiet'
 alias s='cd ..'
 alias df='df --human-readable'
-alias du='du --human-readable'
+alias du='du -h'
+alias ds='du -hs'
 alias m='mutt -y'
 alias md='mkdir -p'
 alias rd='rmdir'
