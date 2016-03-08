@@ -95,7 +95,7 @@ set $workspace3 "3: Latex "
 set $workspace4 "4: Publi"
 set $workspace5 "5: Gimp"
 set $workspace6 "6: Iceweasel"
-set $workspace7 "7: "
+set $workspace7 "7: LibreOffice"
 set $workspace8 "8: "
 set $workspace9 "9: Deluge"
 set $workspace10 "10: SSH"
@@ -127,7 +127,8 @@ bindsym $mod+Shift+agrave move container to workspace $workspace10
 # Assign package to workspace. Get the class with xprop
 assign [class="Tor Browser"] $workspace2
 assign [class="Gimp"] $workspace5
-assign [class="Iceweasel"] $workspace6
+assign [class="iceweasel"] $workspace6
+assign [class="libreoffice-startcenter"] $workspace7
 assign [class="Deluge"] $workspace9
 
 # reload the configuration file
