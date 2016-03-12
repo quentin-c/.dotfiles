@@ -172,8 +172,8 @@ bar {
 
 #keybinding
 bindsym $mod+F4 exec i3lock & sleep 4s & xset dpms force off
-bindsym $mod+F10 exec mount /media/clef0
-bindsym $mod+F11 exec umount /media/clef0
+bindsym $mod+F10 exec sudo mount /media/clef0
+bindsym $mod+F11 exec sudo umount /media/clef0
 bindsym $mod+F1 exec sleep 4s & xset dpms force off
 bindsym $mod+F7 exec /home/pti/Bin/startxrandr
 bindsym XF86AudioRaiseVolume exec amixer -q set Master playback 5%+
